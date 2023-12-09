@@ -59,8 +59,6 @@ def fees_report(infile, outfile):
         for patron_id, late_fee in late_fees_dict.items():
             writer.writerow({'patron_id': patron_id, 'late_fees': "{:.2f}".format(late_fee)})
 
-            
-
 
 # The following main selection block will only run when you choose
 # "Run -> Module" in IDLE.  Use this section to run test code.  The
