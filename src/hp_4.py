@@ -50,6 +50,7 @@ def fees_report(infile, outfile):
                 days_late = (date_returned - date_due).days
                 late_fee = days_late * 0.25
                 late_fees_dict[patron_id] += late_fee
+                
 
     with open(outfile, 'w', newline='') as csvfile:
         fieldnames = ['patron_id', 'late_fees']
