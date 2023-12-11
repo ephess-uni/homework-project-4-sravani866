@@ -57,6 +57,21 @@ def fees_report(infile, outfile):
         for patron_id, late_fee in late_fees_dict.items():
             writer.writerow({'patron_id': patron_id, 'late_fees': "{:.2f}".format(late_fee)})
 
+def test___fees_report___includes_all_patrons(fees_report_out_short):
+    expected_fees = {
+        '17-873-8783': '15.00',
+        '83-279-0036': '0.00'
+    }
+    actual_patrons = [fee['patron_id'] for fee in fees_report_out_short]
+    expected_patrons = list(expected_fees.keys())
+
+    # Ensure that all expected patrons are present in the actual patrons list
+    for patron in expected_patrons:
+        assert patron in actual_patrons
+
+    # Ensure that there are no extra patrons in the actual patrons list
+    assert sorted(actual_patrons) == sorted(expected_patrons)            
+
 
 # The following main selection block will only run when you choose
 # "Run -> Module" in IDLE.  Use this section to run test code.  The
