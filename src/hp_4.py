@@ -1,5 +1,3 @@
-# hp_4.py
-#
 import csv
 from datetime import datetime, timedelta
 from csv import DictReader, DictWriter
@@ -13,8 +11,8 @@ def reformat_dates(old_dates):
 
 
 def date_range(start, n):
-    """For input date string `start`, with format 'yyyy-mm-dd', returns
-    a list of of `n` datetime objects starting at `start` where each
+    """For input date string start, with format 'yyyy-mm-dd', returns
+    a list of of n datetime objects starting at start where each
     element in the list is one day after the previous."""
     if not isinstance(start, str):
         raise TypeError("start should be of type str")
@@ -26,8 +24,8 @@ def date_range(start, n):
 
 
 def add_date_range(values, start_date):
-    """Adds a daily date range to the list `values` beginning with
-    `start_date`.  The date, value pairs are returned as tuples
+    """Adds a daily date range to the list values beginning with
+    start_date.  The date, value pairs are returned as tuples
     in the returned list."""
     date_objects = date_range(start_date, len(values))
     return list(zip(date_objects, values))
@@ -50,7 +48,6 @@ def fees_report(infile, outfile):
                 days_late = (date_returned - date_due).days
                 late_fee = days_late * 0.25
                 late_fees_dict[patron_id] += late_fee
-                
 
     with open(outfile, 'w', newline='') as csvfile:
         fieldnames = ['patron_id', 'late_fees']
